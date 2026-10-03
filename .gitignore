@@ -1,0 +1,62 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Bun & Package Manager Caches
+.bun/
+*.bun-build
+
+# Local SQLite Database files & WAL journals
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+data.db
+data.db-shm
+data.db-wal
+sqlite.db
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# Build outputs & Transpiled code
+dist/
+build/
+out/
+.next/
+.output/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor & OS Metadata
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Testing & Coverage
+coverage/
+.nyc_output/
+
+# Temporary / Scratch files
+tmp/
+temp/
