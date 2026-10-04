@@ -1,15 +1,21 @@
 import React from "react";
 import { Draggable } from "@hello-pangea/dnd";
-import { Trash2 } from "lucide-react";
+import { Trash2, Pencil } from "lucide-react";
 import type { Task } from "../types/task";
 
 interface TaskCardProps {
   task: Task;
   index: number;
+  onEdit: (task: Task) => void;
   onDelete: (id: number) => void;
 }
 
-export const TaskCard: React.FC<TaskCardProps> = ({ task, index, onDelete }) => {
+export const TaskCard: React.FC<TaskCardProps> = ({
+  task,
+  index,
+  onEdit,
+  onDelete,
+}) => {
   return (
     <Draggable draggableId={task.id.toString()} index={index}>
       {(provided, snapshot) => (
@@ -27,13 +33,24 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, index, onDelete }) => 
             <h4 className="font-medium text-sm text-[#f8fafc] leading-tight">
               {task.title}
             </h4>
-            <button
-              type="button"
-              onClick={() => onDelete(task.id)}
-              className="text-[#64748b] hover:text-[#ef4444] transition-colors p-1"
-            >
-              <Trash2 size={14} />
-            </button>
+            <div className="flex items-center gap-1 shrink-0">
+              <button
+                type="button"
+                onClick={() => onEdit(task)}
+                className="text-[#64748b] hover:text-[#38bdf8] transition-colors p-1"
+                title="Edit task"
+              >
+                <Pencil size={13} />
+              </button>
+              <button
+                type="button"
+                onClick={() => onDelete(task.id)}
+                className="text-[#64748b] hover:text-[#ef4444] transition-colors p-1"
+                title="Delete task"
+              >
+                <Trash2 size={13} />
+              </button>
+            </div>
           </div>
           {task.description && (
             <p className="mt-2 text-xs text-[#94a3b8] leading-relaxed">

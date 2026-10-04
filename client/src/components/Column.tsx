@@ -7,10 +7,17 @@ interface ColumnProps {
   id: TaskStatus;
   title: string;
   tasks: Task[];
+  onEdit: (task: Task) => void;
   onDelete: (id: number) => void;
 }
 
-export const Column: React.FC<ColumnProps> = ({ id, title, tasks, onDelete }) => {
+export const Column: React.FC<ColumnProps> = ({
+  id,
+  title,
+  tasks,
+  onEdit,
+  onDelete,
+}) => {
   return (
     <div className="flex flex-col flex-1 min-w-75 max-w-95 bg-[#0d1738] border border-[#1e295d] rounded-lg p-4">
       <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#1e295d]">
@@ -30,15 +37,21 @@ export const Column: React.FC<ColumnProps> = ({ id, title, tasks, onDelete }) =>
           <div
             ref={provided.innerRef}
             {...provided.droppableProps}
-            className={`flex-1 min-h-50 rounded p-1 transition-none ${
+            className={`flex-1 min-h-55 rounded p-1 transition-none flex flex-col ${
               snapshot.isDraggingOver ? "bg-[#142354]" : "bg-transparent"
             }`}
           >
+            {tasks.length === 0 && !snapshot.isDraggingOver && (
+              <div className="flex-1 flex items-center justify-center border border-dashed border-[#1e295d] rounded p-4 text-center">
+                <span className="text-xs text-[#475569]">No tasks yet</span>
+              </div>
+            )}
             {tasks.map((task, index) => (
               <TaskCard
                 key={task.id}
                 task={task}
                 index={index}
+                onEdit={onEdit}
                 onDelete={onDelete}
               />
             ))}
