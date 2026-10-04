@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { type DropResult } from "@hello-pangea/dnd";
 import type { Task, TaskStatus, WebSocketMessage } from "../types/task";
 
-const API_BASE = "http://localhost:4000/api/tasks";
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:4000/api/tasks";
 
 export function useTasks() {
   const [tasks, setTasks] = useState<Task[]>([]);

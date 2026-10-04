@@ -7,10 +7,13 @@ import type { WebSocketMessage } from "./types/task";
 
 const app = new Hono();
 
+const PORT = Number(process.env.PORT) || 4000;
+const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || "*";
+
 app.use(
   "/*",
   cors({
-    origin: "*",
+    origin: CLIENT_ORIGIN,
     allowMethods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
   })
 );

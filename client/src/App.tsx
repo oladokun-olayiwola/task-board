@@ -7,7 +7,7 @@ import { useWebSocket } from "./hooks/useWebSocket";
 import { useTasks } from "./hooks/useTasks";
 import type { Task } from "./types/task";
 
-const WS_URL = "ws://localhost:4000/ws";
+const WS_URL = import.meta.env.VITE_WS_URL || "ws://localhost:4000/ws";
 
 export default function App() {
   const {
